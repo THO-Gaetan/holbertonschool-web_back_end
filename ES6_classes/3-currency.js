@@ -12,12 +12,12 @@ export default class Currency {
     return this._name;
   }
 
-  set code(newCode) {
-    this._code = newCode;
+  set code(value) {
+    this._code = value;
   }
 
-  set name(newName) {
-    this._name = newName;
+  set name(value) {
+    this._name = value;
   }
 
   displayFullCurrency() {
