@@ -11,7 +11,7 @@ export default class Currency {
   set code(value) {
     this._code = value;
   }
-  
+
   get name() {
     return this._name;
   }
