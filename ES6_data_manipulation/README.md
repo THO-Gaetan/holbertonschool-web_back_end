@@ -4,12 +4,9 @@ This project covers various aspects of data manipulation in ES6 JavaScript, focu
 
 ## Learning Objectives
 
-- Promises (how, why, and what)
-- How to use the then, resolve, catch methods
-- How to use every method of the Promise object
-- Throw / Try
-- The await operator
-- How to use an async function
+- How to use map, filter and reduce on arrays
+- Typed arrays in JavaScript
+- The Set, Map, and Weak link data structures
 
 ## Tasks
 
@@ -46,4 +43,5 @@ npm install --save-dev eslint
 - Your code should use the js extension
 - Your code will be tested using Jest and the command npm run test
 - Your code will be verified against lint using ESLint
+- Your code needs to pass all the tests and lint. You can verify the entire project running ```npm run full-test```
 - All of your functions must be exported

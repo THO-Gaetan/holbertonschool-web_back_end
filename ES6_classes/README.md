@@ -45,4 +45,4 @@ npm install --save-dev eslint
 - Your code should use the js extension
 - Your code will be tested using Jest and the command npm run test
 - Your code will be verified against lint using ESLint
-- All of your functions must be exported
+- Your code needs to pass all the tests and lint. You can verify the entire project running ```npm run full-test```
