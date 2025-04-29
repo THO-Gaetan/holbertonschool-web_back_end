@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+"""
+Asynchronous Generator Module
+
+This module provides an asynchronous generator function that yields
+random floating-point numbers with a delay between each yield.
+"""
 import asyncio
 import random
 
