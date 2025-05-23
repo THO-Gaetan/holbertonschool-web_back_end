@@ -13,22 +13,22 @@ function readDatabase(filePath) {
       } else {
         try {
           const lines = data.trim().split('\n');
-          
-          const students = lines.slice(1).map(line => line.split(','));
-          
+
+          const students = lines.slice(1).map((line) => line.split(','));
+
           const studentsByField = {};
-          
+
           students.forEach((student) => {
             const firstName = student[0];
             const field = student[3];
-            
+
             if (!studentsByField[field]) {
               studentsByField[field] = [];
             }
-            
+
             studentsByField[field].push(firstName);
           });
-          
+
           resolve(studentsByField);
         } catch (error) {
           reject(Error('Cannot parse database content'));
