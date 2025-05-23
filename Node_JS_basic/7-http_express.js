@@ -14,10 +14,10 @@ function countStudents(filePath) {
         const students = lines.slice(1).map((line) => line.split(','));
         const studentCount = students.length;
         const fieldCounts = {};
-        let result = '';
+        const result = []; // Use an array to collect lines
 
-        // Add student count to result string
-        result += `Number of students: ${studentCount}\n`;
+        // Add student count as first line
+        result.push(`Number of students: ${studentCount}`);
 
         for (const student of students) {
           const field = student[3];
@@ -28,15 +28,16 @@ function countStudents(filePath) {
         }
 
         for (const [field, names] of Object.entries(fieldCounts)) {
-          result += `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}\n`;
+          result.push(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
         }
 
-        // Now resolve with the result string instead of just logging to console
-        resolve(result);
+        // Join with newlines but don't add an extra one at the end
+        resolve(result.join('\n'));
       }
     });
   });
 }
+
 app.get('/', (req, res) => {
   res.set('Content-Type', 'text/plain');
   res.send('Hello Holberton School!');
