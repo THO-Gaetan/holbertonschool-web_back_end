@@ -19,11 +19,9 @@ class StudentsController {
           );
         });
 
-        response.status(200).send(responseLines.join('\n'));
+        return response.status(200).send(responseLines.join('\n'));
       })
-      .catch((error) => {
-        response.status(500).send(error.message);
-      });
+      .catch(() => response.status(500).send('Cannot load the database'));
   }
 
   static getAllStudentsByMajor(request, response) {
@@ -34,18 +32,16 @@ class StudentsController {
       return response.status(500).send('Major parameter must be CS or SWE');
     }
 
-    readDatabase(databasePath)
+    return readDatabase(databasePath)
       .then((studentsByField) => {
         if (!studentsByField[major]) {
           return response.status(200).send('List: ');
         }
 
         const students = studentsByField[major];
-        response.status(200).send(`List: ${students.join(', ')}`);
+        return response.status(200).send(`List: ${students.join(', ')}`);
       })
-      .catch((error) => {
-        response.status(500).send(error.message);
-      });
+      .catch(() => response.status(500).send('Cannot load the database'));
   }
 }
 
