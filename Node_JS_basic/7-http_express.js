@@ -50,10 +50,10 @@ app.get('/students', async (req, res) => {
     const data = await countStudents(databaseFilePath);
     res.send(`This is the list of our students\n${data}`);
   } catch (error) {
-    res.status(404).send(error.message);
+    res.send(`This is the list of our students\n${error.message}`);
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
-});
+app.listen(port);
+
+module.exports = app;
