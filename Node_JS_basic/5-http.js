@@ -6,33 +6,38 @@ const hostname = '127.0.0.1';
 const port = 1245;
 
 function countStudents(filePath) {
-    return new Promise((resolve, reject) => {
-      fs.readFile(filePath, 'utf8', (err, data) => {
-        if (err) {
-          reject(Error('Cannot load the database'));
-        } else {
-          const lines = data.trim().split('\n');
-          const students = lines.slice(1).map((line) => line.split(','));
-          const studentCount = students.length;
-          const fieldCounts = {};
-  
-          for (const student of students) {
-            const field = student[3];
-            if (!fieldCounts[field]) {
-              fieldCounts[field] = [];
-            }
-            fieldCounts[field].push(student[0]);
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        reject(Error('Cannot load the database'));
+      } else {
+        const lines = data.trim().split('\n');
+        const students = lines.slice(1).map((line) => line.split(','));
+        const studentCount = students.length;
+        const fieldCounts = {};
+        let result = '';
+
+        // Add student count to result string
+        result += `Number of students: ${studentCount}\n`;
+
+        for (const student of students) {
+          const field = student[3];
+          if (!fieldCounts[field]) {
+            fieldCounts[field] = [];
           }
-  
-          console.log(`Number of students: ${studentCount}`);
-          for (const [field, names] of Object.entries(fieldCounts)) {
-            console.log(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
-          }
-          resolve();
+          fieldCounts[field].push(student[0]);
         }
-      });
+
+        for (const [field, names] of Object.entries(fieldCounts)) {
+          result += `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}\n`;
+        }
+        
+        // Now resolve with the result string instead of just logging to console
+        resolve(result);
+      }
     });
-  }
+  });
+}
 
 const app = http.createServer((req, res) => {
     res.statusCode = 200;

@@ -30,7 +30,7 @@ function countStudents(filePath) {
         for (const [field, names] of Object.entries(fieldCounts)) {
           result += `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}\n`;
         }
-        
+
         // Now resolve with the result string instead of just logging to console
         resolve(result);
       }
@@ -43,9 +43,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', async (req, res) => {
-    res.set('Content-Type', 'text/plain');
-    const databaseFilePath = process.argv[2] || 'database.csv';
-    try {
+  res.set('Content-Type', 'text/plain');
+  const databaseFilePath = process.argv[2] || 'database.csv';
+  try {
     const data = await countStudents(databaseFilePath);
     res.send(`This is the list of our students\n${data}`);
   } catch (error) {
